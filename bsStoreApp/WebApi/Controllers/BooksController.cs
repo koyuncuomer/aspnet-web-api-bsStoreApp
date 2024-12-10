@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 using WebApi.Repositories;
@@ -118,6 +119,29 @@ namespace WebApi.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        [HttpPatch("{id:int}")]
+        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id, 
+            [FromBody] JsonPatchDocument<Book> book)
+        {
+            try
+            {
+                var entity = _context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
+
+                if (entity is null)
+                    return NotFound();
+
+                book.ApplyTo(entity);
+                _context.SaveChanges();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
 
     }
 }
