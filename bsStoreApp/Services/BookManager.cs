@@ -12,17 +12,16 @@ namespace Services
     public class BookManager : IBookService
     {
         private readonly IRepositoryManager _manager;
+        private readonly ILoggerService _logger;
 
-        public BookManager(IRepositoryManager manager)
+        public BookManager(IRepositoryManager manager, ILoggerService logger)
         {
             _manager = manager;
+            _logger = logger;
         }
 
         public Book CreateOneBook(Book book)
         {
-            if (book is null)
-                throw new ArgumentNullException(nameof(book));
-
             _manager.Book.CreateOneBook(book);
             _manager.Save();
             return book;
@@ -32,7 +31,11 @@ namespace Services
         {
             var entity = _manager.Book.GetOneBookById(id, trackChanges);
             if (entity is null)
-                throw new Exception($"{id}'li kitap bulunamadı.");
+            {
+                string msg = $"{id} id'li kitap bulunamadı.";
+                _logger.LogInfo(msg);
+                throw new Exception(msg);
+            }
 
             _manager.Book.DeleteOneBook(entity);
             _manager.Save();
@@ -52,7 +55,11 @@ namespace Services
         {
             var entity = _manager.Book.GetOneBookById(id, trackChanges);
             if (entity is null)
-                throw new Exception($"{id}'li kitap bulunamadı.");
+            {
+                string msg = $"{id} id'li kitap bulunamadı.";
+                _logger.LogInfo(msg);
+                throw new Exception(msg);
+            }
 
             if (book is null)
                 throw new ArgumentNullException(nameof(book));
