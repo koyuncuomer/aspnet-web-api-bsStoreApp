@@ -11,12 +11,12 @@ namespace Presentation.Controllers
 {
     [ApiVersion("2.0")]
     [ApiController]
-    [Route("api/books")]
-    public class BookV2Controller : ControllerBase
+    [Route("api/{v:apiversion}/books")]
+    public class BooksV2Controller : ControllerBase
     {
         private readonly IServiceManager _manager;
 
-        public BookV2Controller(IServiceManager manager)
+        public BooksV2Controller(IServiceManager manager)
         {
             _manager = manager;
         }
@@ -25,7 +25,12 @@ namespace Presentation.Controllers
         public async Task<IActionResult> GetAllBooksAsync() 
         {
             var books = await _manager.BookService.GetAllBooksAsync(false);
-            return Ok(books);
+            var booksV2 = books.Select(b => new
+            {
+                Title = b.Title,
+                Id = b.Id
+            });
+            return Ok(booksV2);
         }
     }
 }
