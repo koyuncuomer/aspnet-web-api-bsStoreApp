@@ -15,5 +15,8 @@ namespace Repositories.Contracts
         void CreateOneBook(Book book);
         void UpdateOneBook(Book book);
         void DeleteOneBook(Book book);
+
+        // BookController V2 versiyonu için hazırlanan sade metod
+        Task<List<Book>> GetAllBooksAsync(bool trackChanges);
     }
 }
