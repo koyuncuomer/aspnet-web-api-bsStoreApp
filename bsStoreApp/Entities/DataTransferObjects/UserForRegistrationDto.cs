@@ -9,7 +9,7 @@ namespace Entities.DataTransferObjects
 {
     public record UserForRegistrationDto
     {
-        public string? FirsName { get; init; }
+        public string? FirstName { get; init; }
         public string? LastName { get; init; }
 
         [Required(ErrorMessage = "Kullanıcı Adı zorunlu alan.")]
