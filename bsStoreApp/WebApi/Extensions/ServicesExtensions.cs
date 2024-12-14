@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using AspNetCoreRateLimit;
 using Entities.DataTransferObjects;
 using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Mvc;
@@ -100,5 +101,27 @@ namespace WebApi.Extensions
             validationOpt.MustRevalidate = false;
         });
 
+        public static void ConfigureRareLimitingOptions(this IServiceCollection services)
+        {
+            var rateLimitRules = new List<RateLimitRule>()
+            {
+                new RateLimitRule()
+                {
+                    Endpoint = "*", // Tüm endpointler için
+                    Limit = 30, // Period başına 30 istek
+                    Period = "1m" // Period 1 dk
+                }
+            };
+
+            services.Configure<IpRateLimitOptions>(opt =>
+            {
+                opt.GeneralRules = rateLimitRules;
+            });
+
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+        }
     }
 }
