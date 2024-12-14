@@ -52,8 +52,8 @@ builder.Services.AddMemoryCache();
 builder.Services.ConfigureRareLimitingOptions();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity(); // Password özellikleri tanýmlandý
+builder.Services.ConfigureJWT(builder.Configuration);
 
 var app = builder.Build();
 
