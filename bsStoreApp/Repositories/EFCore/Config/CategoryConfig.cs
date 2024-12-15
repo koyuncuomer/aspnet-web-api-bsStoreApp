@@ -16,7 +16,8 @@ namespace Repositories.EFCore.Config
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Name).IsRequired();
 
-            builder.HasData(new Category() { Id = 1, Name = "Kategori 1" });
+            // Seed data
+            //builder.HasData(new Category() { Id = 1, Name = "Kategori 1" });
         }
     }
 }
