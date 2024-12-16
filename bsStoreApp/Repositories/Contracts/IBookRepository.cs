@@ -18,5 +18,7 @@ namespace Repositories.Contracts
 
         // BookController V2 versiyonu için hazırlanan sade metod
         Task<List<Book>> GetAllBooksAsync(bool trackChanges);
+
+        Task<IEnumerable<Book>> GetAllBooksWithDetailsAsync(bool trackChanges);
     }
 }
