@@ -41,7 +41,7 @@ namespace Repositories.EFCore
         }
 
         public async Task<Book> GetOneBookByIdAsync(int id, bool trackChanges) =>
-            await FindByCondition(b => b.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
+            await FindByCondition(b => b.Id.Equals(id), trackChanges).Include(b => b.Category).SingleOrDefaultAsync();
 
         public void UpdateOneBook(Book book) => Update(book);
     }
