@@ -74,6 +74,9 @@ namespace Presentation.Controllers
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateOneBookAsync([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {
+            if (bookDto.Id != id)
+                return BadRequest();
+
             await _manager.BookService.UpdateOneBookAsync(id, bookDto, false);
 
             return NoContent();

@@ -98,6 +98,9 @@ namespace Services
             var entity = await GetOneBookByIdAndCheckExists(id, trackChanges);
             entity = _mapper.Map<Book>(bookDto);
 
+            // bookDtodan gelen kategoriye göre öyle bir kategori var mı kontrolü için
+            var category = await _categoryService.GetOneCategoryByIdAsync(bookDto.CategoryId, false);
+
             _manager.Book.Update(entity);
             await _manager.SaveAsync();
         }
