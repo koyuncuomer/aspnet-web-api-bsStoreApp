@@ -55,6 +55,9 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.ConfigureIdentity(); // Password özellikleri tanýmlandý
 builder.Services.ConfigureJWT(builder.Configuration);
 
+builder.Services.RegisterRepositories();
+builder.Services.RegisterServices();
+
 var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILoggerService>();
