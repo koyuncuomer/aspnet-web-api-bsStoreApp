@@ -484,3 +484,4 @@ $RECYCLE.BIN/
 *.swp
 
 /bsStoreApp/WebApi/internal_logs
+/bsStoreApp/WebApi/Media
