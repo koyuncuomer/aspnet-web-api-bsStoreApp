@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Entities.DataTransferObjects;
 using Entities.Exceptions;
+using Entities.Extensions;
 using Entities.LinkModels;
 using Entities.Models;
 using Entities.RequestFeatures;
@@ -53,7 +54,7 @@ namespace Services
                 throw new PriceOutOfRangeBadRequestException();
 
             var booksWithMetaData = await _manager.Book.GetAllBooksAsync(linkParameters.BookParameters, trackChanges);
-            var booksDto = _mapper.Map<IEnumerable<BookDto>>(booksWithMetaData);
+            var booksDto = booksWithMetaData.ToMappedPagedList<Book, BookDto>(_mapper);
             var links = _bookLinks.TryGenerateLinks(booksDto, linkParameters.BookParameters.Fields, linkParameters.HttpContext);
 
             return (linkResponse: links, metaData: booksWithMetaData.MetaData);

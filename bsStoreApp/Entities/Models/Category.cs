@@ -11,6 +11,5 @@ namespace Entities.Models
         public int Id { get; set; }
         public String? Name { get; set; }
 
-        public ICollection<Book> Books { get; set; } // Fiziksel olarak dbde karşılığı olmayacak ilişkiyi tanımlamak için gerekli
     }
 }

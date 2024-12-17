@@ -25,6 +25,7 @@ namespace Repositories.EFCore
         public async Task<PagedList<Book>> GetAllBooksAsync(BookParameters bookParameters, bool trackChanges)
         {
             var books = await FindAll(trackChanges)
+                .Include(b => b.Category)
                 .FilterBooks(bookParameters.MinPrice, bookParameters.MaxPrice)
                 .Search(bookParameters.SearchTerm)
                 .Sort(bookParameters.OrderBy)
