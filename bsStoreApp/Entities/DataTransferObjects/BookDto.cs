@@ -5,6 +5,7 @@
         public int Id { get; init; }
         public String Title { get; init; }
         public decimal Price { get; init; }
-        public CategoryDto Category { get; set; }
+        public int CategoryId { get; init; }
+        public CategoryDto Category { get; init; }
     }
 }
