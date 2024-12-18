@@ -19,7 +19,12 @@ namespace WebApi.Utilities.AutoMapper
 
             CreateMap<UserForRegistrationDto, User>();
 
+
             CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDtoForUpdate, Category>().ReverseMap();
+            CreateMap<CategoryDtoForInsertion, Category>();
+
+
         }
     }
 }

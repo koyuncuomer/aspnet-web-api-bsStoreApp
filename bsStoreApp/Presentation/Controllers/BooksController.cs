@@ -95,7 +95,7 @@ namespace Presentation.Controllers
         [HttpOptions]
         public IActionResult GetBookOptions()
         {
-            Response.Headers.Add("Allow", "GET, POST, PUT, PATCH, HEAD, OPTIONS");
+            Response.Headers.Add("Allow", "GET, POST, PUT, HEAD, OPTIONS");
             return Ok();
         }
 
