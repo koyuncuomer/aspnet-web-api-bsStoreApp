@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Book;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Marvin.Cache.Headers;

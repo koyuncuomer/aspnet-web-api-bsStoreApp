@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Book;
 using Entities.Exceptions;
 using Entities.Extensions;
 using Entities.LinkModels;

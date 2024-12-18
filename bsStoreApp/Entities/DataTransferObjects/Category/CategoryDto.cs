@@ -1,4 +1,4 @@
-﻿namespace Entities.DataTransferObjects
+﻿namespace Entities.DataTransferObjects.Category
 {
     public class CategoryDto
     {

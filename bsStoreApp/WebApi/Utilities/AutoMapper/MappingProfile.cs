@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Book;
+using Entities.DataTransferObjects.Category;
 using Entities.Models;
 
 namespace WebApi.Utilities.AutoMapper

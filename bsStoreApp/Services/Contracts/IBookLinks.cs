@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Book;
 using Entities.LinkModels;
 using Microsoft.AspNetCore.Http;
 

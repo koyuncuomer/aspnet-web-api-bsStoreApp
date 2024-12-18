@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Book;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;

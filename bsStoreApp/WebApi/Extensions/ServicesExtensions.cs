@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text;
 using AspNetCoreRateLimit;
-using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Book;
 using Entities.Models;
 using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

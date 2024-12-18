@@ -1,4 +1,4 @@
-﻿using Entities.DataTransferObjects;
+﻿using Entities.DataTransferObjects.Book;
 using Entities.LinkModels;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
