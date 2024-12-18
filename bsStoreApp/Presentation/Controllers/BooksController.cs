@@ -90,28 +90,6 @@ namespace Presentation.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Editor, Admin")]
-        [HttpPatch("{id:int}")]
-        public async Task<IActionResult> PartiallyUpdateOneBookAsync([FromRoute(Name = "id")] int id,
-            [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPatch)
-        {
-            if (bookPatch is null)
-                return BadRequest();
-
-            var result = await _manager.BookService.GetOneBookForPatchAsync(id, false);
-
-            bookPatch.ApplyTo(result.bookDtoForUpdate, ModelState);
-
-            TryValidateModel(result.bookDtoForUpdate);
-
-            if (!ModelState.IsValid)
-                return UnprocessableEntity(ModelState);
-
-            await _manager.BookService.SaveChangesForPatchAsync(result.bookDtoForUpdate, result.book);
-
-            return NoContent();
-        }
-
         [Authorize]
         [HttpOptions]
         public IActionResult GetBookOptions()
