@@ -27,6 +27,7 @@ namespace Repositories.EFCore
             var books = await FindAll(trackChanges)
                 .Include(b => b.Category)
                 .FilterBooks(bookParameters.MinPrice, bookParameters.MaxPrice)
+                .FilterByCategory(bookParameters.CategoryId)
                 .Search(bookParameters.SearchTerm)
                 .Sort(bookParameters.OrderBy)
                 .ToListAsync();

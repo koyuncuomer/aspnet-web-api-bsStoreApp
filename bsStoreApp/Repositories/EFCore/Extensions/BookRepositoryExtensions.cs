@@ -21,7 +21,7 @@ namespace Repositories.EFCore.Extensions
 
             var lowerCaseTerm = searchTerm.Trim().ToLower();
 
-            return books.Where(book => book.Title.ToLower().Contains(searchTerm));
+            return books.Where(book => book.Title.ToLower().Contains(lowerCaseTerm));
         }
 
         public static IQueryable<Book> Sort(this IQueryable<Book> books, string orderByQueryString)
@@ -35,6 +35,14 @@ namespace Repositories.EFCore.Extensions
                 return books.OrderBy(b => b.Id);
 
             return books.OrderBy(orderQuery);
+        }
+
+        public static IQueryable<Book> FilterByCategory(this IQueryable<Book> books, int? categoryId)
+        {
+            if (categoryId.HasValue)
+                books = books.Where(book => book.CategoryId == categoryId.Value);
+
+            return books;
         }
 
     }
