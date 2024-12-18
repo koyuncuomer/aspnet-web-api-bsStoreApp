@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities.Exceptions;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Repositories.Contracts;
 using Services.Contracts;
 
@@ -18,9 +19,9 @@ namespace Services
             _manager = manager;
         }
 
-        public async Task<IEnumerable<Category>> GetAllCategoriesAsync(bool trackChanges)
+        public async Task<IEnumerable<Category>> GetAllCategoriesAsync(CategoryParameters categoryParameters, bool trackChanges)
         {
-            return await _manager.Category.GetAllCategoriesAsync(trackChanges);
+            return await _manager.Category.GetAllCategoriesAsync(categoryParameters, trackChanges);
         }
 
         public async Task<Category> GetOneCategoryByIdAsync(int id, bool trackChanges)

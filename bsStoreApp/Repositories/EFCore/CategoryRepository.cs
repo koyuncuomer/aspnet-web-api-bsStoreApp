@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
+using Repositories.EFCore.Extensions;
 
 namespace Repositories.EFCore
 {
@@ -19,9 +21,12 @@ namespace Repositories.EFCore
 
         public void DeleteOneCategory(Category category) => Delete(category);
 
-        public async Task<IEnumerable<Category>> GetAllCategoriesAsync(bool trackChanges)
+        public async Task<IEnumerable<Category>> GetAllCategoriesAsync(CategoryParameters categoryParameters, bool trackChanges)
         {
-            return await FindAll(trackChanges).OrderBy(c => c.Name).ToListAsync();
+            return await FindAll(trackChanges)
+                .Search(categoryParameters.SearchTerm)
+                .Sort(categoryParameters.OrderBy)
+                .ToListAsync();
         }
 
         public async Task<Category> GetOneCategoryByIdAsync(int id, bool trackChanges)
