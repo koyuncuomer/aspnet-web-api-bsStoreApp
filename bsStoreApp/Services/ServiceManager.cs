@@ -18,12 +18,14 @@ namespace Services
         private readonly IBookService _bookService;
         private readonly IAuthenticationService _authenticationService;
         private readonly ICategoryService _categoryService;
+        private readonly IReviewService _reviewService;
 
-        public ServiceManager(IBookService bookService, IAuthenticationService authenticationService, ICategoryService categoryService)
+        public ServiceManager(IBookService bookService, IAuthenticationService authenticationService, ICategoryService categoryService, IReviewService reviewService)
         {
             _bookService = bookService;
             _authenticationService = authenticationService;
             _categoryService = categoryService;
+            _reviewService = reviewService;
         }
 
         public IBookService BookService => _bookService;
@@ -31,5 +33,7 @@ namespace Services
         public IAuthenticationService AuthenticationService => _authenticationService;
 
         public ICategoryService CategoryService => _categoryService;
+
+        public IReviewService ReviewService => _reviewService;
     }
 }

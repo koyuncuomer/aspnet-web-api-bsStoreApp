@@ -222,12 +222,14 @@ namespace WebApi.Extensions
         {
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
         }
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<IBookService, BookManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IAuthenticationService, AuthenticationManager>();
+            services.AddScoped<IReviewService, ReviewManager>();
         }
     }
 }

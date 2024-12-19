@@ -10,6 +10,7 @@ namespace Repositories.Contracts
     {
         IBookRepository Book {  get; }
         ICategoryRepository Category {  get; }
+        IReviewRepository Review {  get; }
         Task SaveAsync();
     }
 }

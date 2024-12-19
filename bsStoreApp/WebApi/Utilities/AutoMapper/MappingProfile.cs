@@ -2,6 +2,7 @@
 using Entities.DataTransferObjects;
 using Entities.DataTransferObjects.Book;
 using Entities.DataTransferObjects.Category;
+using Entities.DataTransferObjects.Review;
 using Entities.Models;
 
 namespace WebApi.Utilities.AutoMapper
@@ -19,12 +20,18 @@ namespace WebApi.Utilities.AutoMapper
 
             CreateMap<UserForRegistrationDto, User>();
 
-
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDtoForUpdate, Category>().ReverseMap();
             CreateMap<CategoryDtoForInsertion, Category>();
 
+            CreateMap<Review, ReviewDto>()
+                .ForMember(dest => dest.Book, opt => opt.MapFrom(src => src.Book))
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User));
 
+            CreateMap<ReviewDtoForInsertion, Review>();
+            CreateMap<ReviewDtoForUpdate, Review>().ReverseMap();
+
+            CreateMap<User, UserForMinimalDto>();
         }
     }
 }
